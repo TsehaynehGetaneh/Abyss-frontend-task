@@ -45,6 +45,7 @@ const Tree: React.FC<TreeProps> = ({
         top: position.y,
         transform: `scale(${scaleFactor})`,
         cursor: dragging ? "grabbing" : "grab",
+        minWidth: "100%"
       }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}

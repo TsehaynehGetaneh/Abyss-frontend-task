@@ -8,7 +8,7 @@ function App() {
   const treeRef = useRef<HTMLDivElement>(null);
 
   const [dragging, setDragging] = useState(false);
-  const [position, setPosition] = useState({ x: 500, y: 200 });
+  const [position, setPosition] = useState({ x: 550, y: 150 });
   const dragStart = useRef({ x: 0, y: 0 });
 
   const handleMouseDown = (e: React.MouseEvent) => {
