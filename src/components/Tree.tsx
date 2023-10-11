@@ -23,7 +23,6 @@ interface TreeProps {
 }
 
 const Tree: React.FC<TreeProps> = ({
-  zoomPercentage,
   handleMouseDown,
   handleMouseMove,
   handleMouseUp,
