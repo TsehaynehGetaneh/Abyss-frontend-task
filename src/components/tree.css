@@ -2,12 +2,13 @@ body,
 html {
   min-height: 100%;
   min-width: 100%;
+  background-color: #f0f0f0;
 }
 
 * {
   margin: 0;
   padding: 0;
-}
+} 
 
 .tree ul {
   padding-top: 20px;
