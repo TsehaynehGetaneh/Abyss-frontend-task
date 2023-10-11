@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./node.css";
 import { FiEdit2 } from "react-icons/fi";
-import { FiPlus } from 'react-icons/fi';
-import { IoMdCheckmark } from 'react-icons/io';
+import { FiPlus } from "react-icons/fi";
+import { IoMdCheckmark } from "react-icons/io";
 
 interface Node {
   id: string;
@@ -25,6 +25,7 @@ const NodeComponent: React.FC<NodeComponentProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [newLabel, setNewLabel] = useState("");
   const [editedLabel, setEditedLabel] = useState(node.label);
+  const [popup, setPopup] = useState(false);
 
   const addNode = () => {
     const newNode: Node = {
@@ -44,6 +45,10 @@ const NodeComponent: React.FC<NodeComponentProps> = ({
 
   const startEditing = () => {
     setIsEditing(true);
+  };
+  const handleEdit = () => {
+    setIsAdding(true);
+    setPopup(!popup);
   };
 
   const saveEditedNode = () => {
@@ -93,27 +98,32 @@ const NodeComponent: React.FC<NodeComponentProps> = ({
             placeholder="Category Name"
             onChange={(e) => setEditedLabel(e.target.value)}
           />
-          <button onClick={saveEditedNode} className="tree button">
-            <IoMdCheckmark />
+          <button onClick={saveEditedNode} className="tree ">
+            <IoMdCheckmark className="mark" />
           </button>
         </div>
       ) : (
         <>
-          <a className={`tree a ${node.id === "root" ? "root" : ""}`}>{node.label}</a>
-      
+          <a className={`tree a ${node.id === "root" ? "root" : ""}`}>
+            {node.label}
+          </a>
+
           {node.id === "root" ? (
             <button className="tree button" onClick={() => setIsAdding(true)}>
               <FiPlus />
             </button>
           ) : (
             <>
-              <button className="tree button" onClick={() => setIsAdding(true)}>
+              <button className="tree button" onClick={() => setPopup(!popup)}>
                 <FiPlus />
               </button>
               <button className="tree button" onClick={startEditing}>
-                <FiEdit2/>
+                <FiEdit2 />
               </button>
-              <button className="tree button delete" onClick={() => deleteNode(node.id)}>
+              <button
+                className="tree button delete"
+                onClick={() => deleteNode(node.id)}
+              >
                 <span>X</span>
               </button>
             </>
@@ -121,8 +131,20 @@ const NodeComponent: React.FC<NodeComponentProps> = ({
         </>
       )}
 
+      {popup && (
+        <div className="popup-container">
+          <p>What do want to create?</p>
+          <div className="node-popup">
+            <button className="popup-button" onClick={() => handleEdit()}>
+              Category
+            </button>
+            <button className="popup-button ">Service</button>
+          </div>
+        </div>
+      )}
+
       {isAdding && (
-        <div className="node-input">  
+        <div className="node-input">
           <input
             value={newLabel}
             onChange={(e) => setNewLabel(e.target.value)}
@@ -130,8 +152,8 @@ const NodeComponent: React.FC<NodeComponentProps> = ({
           <button className="tree button">
             <FiPlus />
           </button>
-          <button onClick={addNode} className="tree button">
-            <IoMdCheckmark />
+          <button onClick={addNode} className="tree mark">
+            <IoMdCheckmark className="mark" />
           </button>
         </div>
       )}

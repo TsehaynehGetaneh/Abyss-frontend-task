@@ -9,11 +9,10 @@ html {
   padding: 0;
 }
 
-  /* Also, to ensure the <a> tag doesn't take the full width, reset its display property */
-  .tree li a {
-    display: inline-block;
-  }
-  
+/* ensure the <a> tag doesn't take the full width, reset its display property */
+.tree li a {
+  display: inline-block;
+}
 
 .tree ul {
   padding-top: 20px;
@@ -54,14 +53,14 @@ html {
   border-left: 1px solid #ccc;
 }
 
-/*We need to remove left-right connectors from elements without 
+/* remove left-right connectors from elements without 
 any siblings*/
 .tree li:only-child::after,
 .tree li:only-child::before {
   display: none;
 }
 
-/*Remove space from the top of single children*/
+/* Remove space from the top of single children*/
 .tree li:only-child {
   padding-top: 0;
 }
